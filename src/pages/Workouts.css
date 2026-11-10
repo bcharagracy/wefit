@@ -1,0 +1,43 @@
+.workouts-page {
+  padding-top: 48px;
+  padding-bottom: 64px;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .search {
+    width: 320px;
+  }
+}
+
+.search {
+  position: relative;
+}
+
+.search svg {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: var(--gray-400);
+}
+
+.search .input {
+  padding-left: 42px;
+}
+
+.results-count {
+  margin: 24px 0 16px;
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}

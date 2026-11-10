@@ -1,0 +1,261 @@
+
+.hero {
+  padding: 56px 0;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(91, 184, 220, 0.28), transparent 55%),
+    radial-gradient(ellipse at 90% 10%, rgba(38, 165, 173, 0.2), transparent 50%),
+    linear-gradient(135deg, var(--primary-50) 0%, #fff 50%, var(--accent-100) 100%);
+}
+
+.hero-inner {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero h1 {
+  margin-top: 20px;
+  font-size: 2.25rem;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 span {
+  color: var(--primary-600);
+}
+
+.hero-text {
+  max-width: 480px;
+  margin-top: 20px;
+  font-size: 1.05rem;
+  color: var(--gray-600);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 28px;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.hero-points li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-points svg {
+  color: var(--primary-600);
+}
+
+@media (min-width: 640px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 96px 0;
+  }
+  .hero-inner {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+/* Tracker preview card */
+.hero-preview {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.preview-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.preview-streak {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #fff4ed;
+  color: #c2410c;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.preview-value {
+  margin: 4px 0 12px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.preview-value span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gray-500);
+}
+
+.preview-chart {
+  display: flex;
+  gap: 10px;
+  height: 110px;
+  margin-top: 24px;
+}
+
+.preview-col {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 0.7rem;
+  color: var(--gray-400);
+}
+
+.preview-bar {
+  width: 100%;
+  min-height: 3px;
+  border-radius: 6px 6px 0 0;
+  background: var(--primary-200);
+}
+
+.preview-bar.today {
+  background: var(--primary-600);
+}
+
+.preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-100);
+}
+
+.preview-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.preview-list div {
+  flex: 1;
+}
+
+.preview-list p {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.preview-list div span {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+.preview-list strong {
+  font-size: 0.85rem;
+  color: var(--gray-700);
+}
+
+
+.step {
+  text-align: center;
+}
+
+.step-number {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--primary-600);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  box-shadow: 0 0 0 8px var(--primary-50);
+}
+
+.step h3 {
+  margin-top: 20px;
+  font-size: 1.05rem;
+}
+
+.step p {
+  max-width: 280px;
+  margin: 6px auto 0;
+  font-size: 0.9rem;
+  color: var(--gray-500);
+}
+
+.section-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.section-row h2 {
+  font-size: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .section-row h2 {
+    font-size: 2.125rem;
+  }
+}
+
+
+.cta-section {
+  padding-bottom: 64px;
+}
+
+.cta {
+  padding: 48px 24px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(120deg, var(--primary-600), var(--accent-600));
+  text-align: center;
+  color: #fff;
+}
+
+.cta h2 {
+  font-size: 1.75rem;
+  color: #fff;
+}
+
+.cta p {
+  max-width: 460px;
+  margin: 8px auto 0;
+  color: var(--primary-100);
+}
+
+.cta .btn {
+  margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+  .cta {
+    padding: 64px 32px;
+  }
+  .cta h2 {
+    font-size: 2.125rem;
+  }
+}

@@ -1,0 +1,9 @@
+.log-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.log-form h2 {
+  font-size: 1.1rem;
+}

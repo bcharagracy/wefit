@@ -1,0 +1,193 @@
+.plan-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.plan-head h2 {
+  font-size: 1.1rem;
+}
+
+.plan-head .muted {
+  font-size: 0.875rem;
+}
+
+.plan-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ----- Form ----- */
+.plan-fields {
+  margin-top: 24px;
+}
+
+.plan-goal-label {
+  margin: 16px 0 6px;
+}
+
+.goal-options {
+  display: grid;
+  gap: 8px;
+}
+
+@media (min-width: 640px) {
+  .goal-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.goal-option {
+  padding: 12px 16px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--gray-100);
+  color: var(--gray-600);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background var(--transition), color var(--transition);
+}
+
+.goal-option:hover {
+  background: var(--gray-200);
+}
+
+.goal-option.active {
+  background: var(--primary-600);
+  color: #fff;
+}
+
+.plan-error {
+  margin-top: 16px;
+}
+
+.plan-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* ----- Result ----- */
+.plan-body {
+  display: grid;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .plan-body {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.bmi-box {
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--gray-50);
+}
+
+.bmi-box .muted {
+  font-size: 0.875rem;
+}
+
+.bmi-value {
+  margin: 4px 0 8px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--gray-900);
+}
+
+.bmi-advice {
+  margin-top: 16px;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.bmi-goal {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+/* BMI badge colors */
+.bmi-under {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+.bmi-healthy {
+  background: var(--primary-100);
+  color: var(--primary-700);
+}
+.bmi-over {
+  background: #fef3c7;
+  color: #b45309;
+}
+.bmi-obese {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.plan-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.plan-item:hover {
+  border-color: var(--primary-200);
+  background: var(--primary-50);
+}
+
+.plan-item-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  font-size: 1.25rem;
+}
+
+.plan-item-info {
+  flex: 1;
+}
+
+.plan-item-info p {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.plan-item-info span {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--gray-500);
+}
+
+.plan-item-arrow {
+  color: var(--gray-400);
+}
+
+.plan-disclaimer {
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}

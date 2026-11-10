@@ -1,0 +1,135 @@
+.tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 40px;
+  padding-bottom: 64px;
+}
+
+.tracker-row {
+  display: grid;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .tracker-row {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-head h2,
+.list-title {
+  font-size: 1.1rem;
+}
+
+/* Today vs goal */
+.goal {
+  margin-top: 20px;
+}
+
+.goal-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}
+
+.goal-labels span:first-child {
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+/* Small stat boxes */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.stat-box {
+  padding: 12px 8px;
+  border-radius: var(--radius);
+  background: var(--gray-50);
+  text-align: center;
+}
+
+.stat-box strong {
+  display: block;
+  font-size: 1.25rem;
+  color: var(--gray-900);
+}
+
+.stat-box span {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+/* Today's workouts */
+.empty-box {
+  margin-top: 16px;
+  padding: 24px;
+  border-radius: var(--radius);
+  background: var(--gray-50);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}
+
+.today-list {
+  margin-top: 8px;
+}
+
+.today-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.today-list li:last-child {
+  border-bottom: 0;
+}
+
+.today-name {
+  flex: 1;
+  min-width: 0;
+  font-weight: 500;
+  color: var(--gray-900);
+}
+
+
+.today-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  white-space: nowrap;
+}
+
+.icon-button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--gray-400);
+  transition: background var(--transition), color var(--transition);
+}
+
+.icon-button:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+}

@@ -1,0 +1,26 @@
+.page-header {
+  padding: 56px 0;
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-500) 55%, var(--accent-500));
+  text-align: center;
+  color: #fff;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.page-header p {
+  max-width: 640px;
+  margin: 12px auto 0;
+  color: var(--primary-100);
+}
+
+@media (min-width: 768px) {
+  .page-header {
+    padding: 72px 0;
+  }
+  .page-header h1 {
+    font-size: 2.5rem;
+  }
+}

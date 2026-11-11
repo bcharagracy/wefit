@@ -23,7 +23,6 @@ healthy habits in three steps:
 | Workout details (dynamic) | `/workouts/:id` | Loads a different workout from the URL |
 | My Tracker | `/tracker` | Personal plan, workout log and progress chart |
 | Contact | `/contact` | Contact form with validation |
-| 404 | `*` | Shown for unknown URLs |
 
 ## Features
 
@@ -89,6 +88,10 @@ src/
 | My Tracker | Contact |
 |---|---|
 | ![Tracker](screenshots/tracker.png) | ![Contact](screenshots/contact.png) |
+
+| Mobile |
+|---|
+| <img src="screenshots/mobile-home.png" alt="Mobile" width="300"> |
 
 ## Team
 

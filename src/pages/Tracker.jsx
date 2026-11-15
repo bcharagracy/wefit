@@ -5,7 +5,7 @@ import PlanSection from "../components/PlanSection.jsx";
 import LogForm from "../components/LogForm.jsx";
 import WeeklyChart from "../components/WeeklyChart.jsx";
 import useMemoryState from "../hooks/useMemoryState.js";
-import { toDateKey, lastSevenDays, total, countStreak } from "../data/helpers.js";
+import { toDateKey, lastSevenDays, total, countStreak, estimateCalories } from "../data/helpers.js";
 import { goals } from "../data/plan.js";
 import "./Tracker.css";
 
@@ -29,7 +29,10 @@ export default function Tracker() {
   const today = toDateKey();
   const dailyGoal = profile ? (profile.dailyMinutes ?? goals[profile.goal].dailyMinutes) : DEFAULT_GOAL;
 
+  const weight = profile ? profile.weight : 70; // used for calories
+
   const todayWorkouts = log.filter((w) => w.date === today);
+  const caloriesToday = todayWorkouts.reduce((sum, w) => sum + (w.calories || 0), 0);
   const minutesOn = (date) => total(log.filter((w) => w.date === date), "minutes");
   const minutesToday = minutesOn(today);
   const goalPercent = Math.min(100, (minutesToday / dailyGoal) * 100);
@@ -50,18 +53,22 @@ export default function Tracker() {
   const loadSample = () => {
     const names = ["Morning Jog", "Full Body Strength", "Sunrise Yoga Flow", "Core Crusher"];
     setLog(
-      lastSevenDays().map((d, i) => ({
-        id: Date.now() + i,
-        date: toDateKey(d),
-        name: names[i % names.length],
-        minutes: 20 + ((i * 13) % 35),
-      }))
+      lastSevenDays().map((d, i) => {
+        const minutes = 20 + ((i * 13) % 35);
+        return {
+          id: Date.now() + i,
+          date: toDateKey(d),
+          name: names[i % names.length],
+          minutes,
+          calories: estimateCalories(5, weight, minutes), // moderate intensity
+        };
+      })
     );
   };
 
   // ----- Cards -----
   const planCard = <PlanSection profile={profile} setProfile={setProfile} />;
-  const logCard = <LogForm onAdd={addWorkout} />;
+  const logCard = <LogForm onAdd={addWorkout} weight={weight} />;
   const progressCard = (
     <div className="card">
       <div className="card-head">
@@ -83,6 +90,7 @@ export default function Tracker() {
         <Stat value={`🔥 ${streak}`} label="day streak" />
         <Stat value={weekTotal} label="min this week" />
         <Stat value={`${activeDays}/7`} label="active days" />
+        <Stat value={caloriesToday} label="kcal today" />
       </div>
 
       <WeeklyChart days={week} goal={dailyGoal} />
@@ -100,7 +108,9 @@ export default function Tracker() {
             <li key={w.id}>
               <span className="icon-box sm"><FiActivity /></span>
               <p className="today-name">{w.name}</p>
-              <span className="today-value">{w.minutes} min</span>
+              <span className="today-value">
+                {w.minutes} min{w.calories ? ` · ${w.calories} kcal` : ""}
+              </span>
               <button className="icon-button" onClick={() => removeWorkout(w.id)} aria-label={`Delete ${w.name}`}>
                 <FiTrash2 />
               </button>

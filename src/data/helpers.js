@@ -35,3 +35,18 @@ export function countStreak(entries) {
 export function estimateCalories(met, weightKg, minutes) {
   return Math.round(met * weightKg * (minutes / 60));
 }
+
+// How hard the workout was. The factor changes the workout's MET:
+// Light = 70%, Moderate = the workout as written, Intense = 130%
+export const intensities = {
+  light: { label: "Light", factor: 0.7 },
+  moderate: { label: "Moderate", factor: 1 },
+  intense: { label: "Intense", factor: 1.3 },
+};
+
+// Base MET for workouts typed by hand ("Other")
+export const OTHER_MET = 5;
+
+export function getMet(baseMet, intensity) {
+  return baseMet * intensities[intensity].factor;
+}

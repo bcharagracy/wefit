@@ -7,3 +7,8 @@
 .log-form h2 {
   font-size: 1.1rem;
 }
+
+.log-calories {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}

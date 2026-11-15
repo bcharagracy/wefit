@@ -161,6 +161,11 @@
   color: var(--primary-600);
 }
 
+.log-options {
+  margin-top: 12px;
+  text-align: left;
+}
+
 .log-minutes {
   margin-top: 12px;
   text-align: left;

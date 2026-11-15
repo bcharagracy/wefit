@@ -29,7 +29,9 @@ healthy habits in three steps:
 
 - Personal plan with BMI, a daily time goal you can set yourself, and recommended workouts
 - Workout log (add your own, or one click from a workout page)
-- Progress: daily goal bar, streak, weekly total and a 7-day bar chart
+- Progress: daily goal bar, streak, weekly total, calories burned today and a 7-day bar chart
+- Calories estimated with the MET formula (MET × weight × hours), using the weight from your plan and the
+  intensity you choose (Light, Moderate or Intense)
 - Workout library with search and filters (Cardio, Strength, Yoga, HIIT)
 - Responsive design for desktop, tablet and mobile (hamburger menu on phones)
 - Data kept in memory only and reset on page refresh (no backend or saving in Phase 1)

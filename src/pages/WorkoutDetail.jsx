@@ -5,7 +5,8 @@ import workouts from "../data/workouts.js";
 import categoryStyles from "../data/categoryStyles.js";
 import WorkoutCard from "../components/WorkoutCard.jsx";
 import useMemoryState from "../hooks/useMemoryState.js";
-import { toDateKey, estimateCalories } from "../data/helpers.js";
+import { toDateKey, estimateCalories, getMet } from "../data/helpers.js";
+import IntensityPicker from "../components/IntensityPicker.jsx";
 import "./WorkoutDetail.css";
 
 export default function WorkoutDetail() {
@@ -18,6 +19,7 @@ export default function WorkoutDetail() {
   const added = addedId === id;
   // Minutes typed by the user for each workout (until they type, the usual time is shown)
   const [minutesById, setMinutesById] = useState({});
+  const [intensity, setIntensity] = useState("moderate");
   // The plan's weight is used for calories (70 kg if there is no plan yet)
   const [profile] = useMemoryState("wf-profile", null);
 
@@ -39,10 +41,10 @@ export default function WorkoutDetail() {
   const minutes = minutesById[id] ?? workout.duration;
   const validMinutes = Number(minutes) > 0 && Number(minutes) <= 300;
   const weight = profile ? profile.weight : 70;
-  const calories = validMinutes ? estimateCalories(workout.met, weight, Number(minutes)) : 0;
+  const calories = validMinutes ? estimateCalories(getMet(workout.met, intensity), weight, Number(minutes)) : 0;
 
   const addToLog = () => {
-    setLog([...log, { id: Date.now(), date: toDateKey(), name: workout.title, minutes: Number(minutes) }]);
+    setLog([...log, { id: Date.now(), date: toDateKey(), name: workout.title, minutes: Number(minutes), calories }]);
     setAddedId(id);
   };
 
@@ -116,6 +118,9 @@ export default function WorkoutDetail() {
               </p>
             ) : (
               <>
+                <div className="log-options">
+                  <IntensityPicker value={intensity} onChange={setIntensity} />
+                </div>
                 <div className="form-group log-minutes">
                   <label className="label" htmlFor="log-minutes">How many minutes did you do?</label>
                   <input

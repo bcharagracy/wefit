@@ -1,0 +1,25 @@
+.intensity-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.intensity-option {
+  padding: 10px 8px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--gray-100);
+  color: var(--gray-600);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background var(--transition), color var(--transition);
+}
+
+.intensity-option:hover {
+  background: var(--gray-200);
+}
+
+.intensity-option.active {
+  background: var(--primary-600);
+  color: #fff;
+}

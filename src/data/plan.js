@@ -21,12 +21,10 @@ export const goals = {
   },
 };
 
-
 export function calculateBMI(heightCm, weightKg) {
   const heightM = heightCm / 100;
   return Math.round((weightKg / (heightM * heightM)) * 10) / 10;
 }
-
 
 export function bmiCategory(bmi) {
   if (bmi < 18.5) return { label: "Underweight", className: "bmi-under" };
@@ -35,13 +33,11 @@ export function bmiCategory(bmi) {
   return { label: "Obese", className: "bmi-obese" };
 }
 
-
 export function recommendWorkouts(goalKey, bmi, count = 3) {
   const goal = goals[goalKey];
   const avoidAdvanced = bmi >= 30 || bmi < 18.5;
   const suitable = workouts.filter((w) => !(avoidAdvanced && w.level === "Advanced"));
 
- 
   const picked = [];
   for (let round = 0; picked.length < count && round < suitable.length; round++) {
     for (const category of goal.categories) {

@@ -9,6 +9,7 @@ import Workouts from "./pages/Workouts.jsx";
 import WorkoutDetail from "./pages/WorkoutDetail.jsx";
 import Tracker from "./pages/Tracker.jsx";
 import Contact from "./pages/Contact.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 export default function App() {
   return (
@@ -25,6 +26,8 @@ export default function App() {
           <Route path="/workouts/:id" element={<WorkoutDetail />} />
           <Route path="/tracker" element={<Tracker />} />
           <Route path="/contact" element={<Contact />} />
+          {/* Any other address shows the 404 page */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

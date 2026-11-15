@@ -23,10 +23,11 @@ healthy habits in three steps:
 | Workout details (dynamic) | `/workouts/:id` | Loads a different workout from the URL |
 | My Tracker | `/tracker` | Personal plan, workout log and progress chart |
 | Contact | `/contact` | Contact form with validation |
+| Not found | any other address | 404 page with a link back home |
 
 ## Features
 
-- Personal plan with BMI and recommended workouts
+- Personal plan with BMI, a daily time goal you can set yourself, and recommended workouts
 - Workout log (add your own, or one click from a workout page)
 - Progress: daily goal bar, streak, weekly total and a 7-day bar chart
 - Workout library with search and filters (Cardio, Strength, Yoga, HIIT)

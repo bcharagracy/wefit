@@ -161,6 +161,11 @@
   color: var(--primary-600);
 }
 
+.log-minutes {
+  margin-top: 12px;
+  text-align: left;
+}
+
 .add-button {
   margin-top: 12px;
 }

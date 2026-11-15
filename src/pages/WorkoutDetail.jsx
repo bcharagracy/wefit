@@ -12,7 +12,12 @@ export default function WorkoutDetail() {
   const { id } = useParams(); // read the :id from the URL
   const workout = workouts.find((w) => w.id === id);
   const [log, setLog] = useMemoryState("wf-workouts", []);
-  const [added, setAdded] = useState(false);
+  // Remember WHICH workout was added, so the message doesn't carry over
+  // when you open another workout from the "More workouts" list
+  const [addedId, setAddedId] = useState(null);
+  const added = addedId === id;
+  // Minutes typed by the user for each workout (until they type, the usual time is shown)
+  const [minutesById, setMinutesById] = useState({});
 
   // Wrong id in the URL
   if (!workout) {
@@ -29,9 +34,12 @@ export default function WorkoutDetail() {
   const Icon = style.icon;
   const related = workouts.filter((w) => w.category === workout.category && w.id !== workout.id);
 
+  const minutes = minutesById[id] ?? workout.duration;
+  const validMinutes = Number(minutes) > 0 && Number(minutes) <= 300;
+
   const addToLog = () => {
-    setLog([...log, { id: Date.now(), date: toDateKey(), name: workout.title, minutes: workout.duration }]);
-    setAdded(true);
+    setLog([...log, { id: Date.now(), date: toDateKey(), name: workout.title, minutes: Number(minutes) }]);
+    setAddedId(id);
   };
 
   const stats = [
@@ -103,9 +111,24 @@ export default function WorkoutDetail() {
                 ✓ Added to today's log. <Link to="/tracker">View tracker</Link>
               </p>
             ) : (
-              <button onClick={addToLog} className="btn btn-primary btn-block add-button">
-                <FiPlus /> Add to today's log
-              </button>
+              <>
+                <div className="form-group log-minutes">
+                  <label className="label" htmlFor="log-minutes">How many minutes did you do?</label>
+                  <input
+                    id="log-minutes"
+                    type="number"
+                    min="1"
+                    max="300"
+                    className={validMinutes ? "input" : "input invalid"}
+                    value={minutes}
+                    onChange={(e) => setMinutesById({ ...minutesById, [id]: e.target.value })}
+                  />
+                  {!validMinutes && <p className="error-text">Enter between 1 and 300 minutes.</p>}
+                </div>
+                <button onClick={addToLog} disabled={!validMinutes} className="btn btn-primary btn-block add-button">
+                  <FiPlus /> Add to today's log
+                </button>
+              </>
             )}
           </div>
         </div>

@@ -16,7 +16,6 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
- 
   const linkClass = ({ isActive }) => (isActive ? "nav-link active" : "nav-link");
 
   return (
@@ -24,7 +23,6 @@ export default function Navbar() {
       <nav className="container navbar-inner">
         <Logo />
 
-        
         <ul className="nav-links">
           {links.map((link) => (
             <li key={link.to}>
@@ -35,7 +33,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-       
         <button
           className="nav-toggle"
           onClick={() => setOpen(!open)}
@@ -46,7 +43,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      
       {open && (
         <ul className="container nav-mobile">
           {links.map((link) => (

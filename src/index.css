@@ -494,6 +494,14 @@ textarea.input {
   text-align: center;
 }
 
+.not-found .not-found-code {
+  margin: 0;
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--primary-500);
+}
+
 .not-found h1 {
   margin-top: 16px;
   font-size: 1.5rem;

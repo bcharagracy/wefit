@@ -63,51 +63,52 @@ export default function Tracker() {
   const planCard = <PlanSection profile={profile} setProfile={setProfile} />;
   const logCard = <LogForm onAdd={addWorkout} />;
   const progressCard = (
-          <div className="card">
-            <div className="card-head">
-              <h2>Your progress</h2>
-              <button onClick={loadSample} className="link-arrow">Load sample data</button>
-            </div>
+    <div className="card">
+      <div className="card-head">
+        <h2>Your progress</h2>
+        <button onClick={loadSample} className="link-arrow">Load sample data</button>
+      </div>
 
-            <div className="goal">
-              <div className="goal-labels">
-                <span>Today</span>
-                <span>{minutesToday} / {dailyGoal} min</span>
-              </div>
-              <div className="progress">
-                <div className="progress-bar" style={{ width: `${goalPercent}%` }} />
-              </div>
-            </div>
-
-            <div className="stats-grid">
-              <Stat value={`🔥 ${streak}`} label="day streak" />
-              <Stat value={weekTotal} label="min this week" />
-              <Stat value={`${activeDays}/7`} label="active days" />
-            </div>
-
-            <WeeklyChart days={week} goal={dailyGoal} />
-          </div>
-  );
-  const todayCard = (
-        <div className="card">
-          <h2 className="list-title">Today's workouts</h2>
-          {todayWorkouts.length === 0 ? (
-            <p className="empty-box">No workouts logged yet today. Add one above or pick one from your plan!</p>
-          ) : (
-            <ul className="today-list">
-              {todayWorkouts.map((w) => (
-                <li key={w.id}>
-                  <span className="icon-box sm"><FiActivity /></span>
-                  <p className="today-name">{w.name}</p>
-                  <span className="today-value">{w.minutes} min</span>
-                  <button className="icon-button" onClick={() => removeWorkout(w.id)} aria-label={`Delete ${w.name}`}>
-                    <FiTrash2 />
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+      <div className="goal">
+        <div className="goal-labels">
+          <span>Today</span>
+          <span>{minutesToday} / {dailyGoal} min</span>
         </div>
+        <div className="progress">
+          <div className="progress-bar" style={{ width: `${goalPercent}%` }} />
+        </div>
+      </div>
+
+      <div className="stats-grid">
+        <Stat value={`🔥 ${streak}`} label="day streak" />
+        <Stat value={weekTotal} label="min this week" />
+        <Stat value={`${activeDays}/7`} label="active days" />
+      </div>
+
+      <WeeklyChart days={week} goal={dailyGoal} />
+    </div>
+  );
+
+  const todayCard = (
+    <div className="card">
+      <h2 className="list-title">Today's workouts</h2>
+      {todayWorkouts.length === 0 ? (
+        <p className="empty-box">No workouts logged yet today. Add one above or pick one from your plan!</p>
+      ) : (
+        <ul className="today-list">
+          {todayWorkouts.map((w) => (
+            <li key={w.id}>
+              <span className="icon-box sm"><FiActivity /></span>
+              <p className="today-name">{w.name}</p>
+              <span className="today-value">{w.minutes} min</span>
+              <button className="icon-button" onClick={() => removeWorkout(w.id)} aria-label={`Delete ${w.name}`}>
+                <FiTrash2 />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 
   const header = (

@@ -7,7 +7,8 @@ import "./PlanSection.css";
 
 export default function PlanSection({ profile, setProfile }) {
   const [editing, setEditing] = useState(!profile);
-  const [form, setForm] = useState(profile || { height: "", weight: "", goal: "fit" });
+  const toForm = (p) => ({ ...p, dailyMinutes: p.dailyMinutes ?? "" });
+  const [form, setForm] = useState(profile ? toForm(profile) : { height: "", weight: "", goal: "fit", dailyMinutes: "" });
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
@@ -16,8 +17,12 @@ export default function PlanSection({ profile, setProfile }) {
     const weight = Number(form.weight);
     if (height < 100 || height > 250) return setError("Please enter a height between 100 and 250 cm.");
     if (weight < 30 || weight > 300) return setError("Please enter a weight between 30 and 300 kg.");
+    // Daily time is optional: empty means "use the goal's suggested minutes"
+    const dailyMinutes = form.dailyMinutes === "" || form.dailyMinutes == null ? null : Number(form.dailyMinutes);
+    if (dailyMinutes !== null && (dailyMinutes < 5 || dailyMinutes > 300))
+      return setError("Please enter a daily time between 5 and 300 minutes.");
 
-    setProfile({ height, weight, goal: form.goal });
+    setProfile({ height, weight, goal: form.goal, dailyMinutes });
     setError("");
     setEditing(false);
   };
@@ -44,6 +49,12 @@ export default function PlanSection({ profile, setProfile }) {
             <label className="label" htmlFor="weight">Weight (kg)</label>
             <input id="weight" type="number" className="input" placeholder="70"
               value={form.weight} onChange={(e) => setForm({ ...form, weight: e.target.value })} />
+          </div>
+          <div className="form-group">
+            <label className="label" htmlFor="daily-minutes">Daily time (min)</label>
+            <input id="daily-minutes" type="number" min="5" max="300" className="input"
+              placeholder={String(goals[form.goal].dailyMinutes)}
+              value={form.dailyMinutes} onChange={(e) => setForm({ ...form, dailyMinutes: e.target.value })} />
           </div>
         </div>
 
@@ -91,7 +102,7 @@ export default function PlanSection({ profile, setProfile }) {
             <p className="muted">{profile.height} cm · {profile.weight} kg</p>
           </div>
         </div>
-        <button className="link-arrow" onClick={() => { setForm(profile); setEditing(true); }}>
+        <button className="link-arrow" onClick={() => { setForm(toForm(profile)); setEditing(true); }}>
           <FiEdit2 /> Edit
         </button>
       </div>
@@ -103,7 +114,7 @@ export default function PlanSection({ profile, setProfile }) {
           <p className="bmi-value">{bmi}</p>
           <span className={`badge ${category.className}`}>{category.label}</span>
           <p className="bmi-advice">{goal.advice}</p>
-          <p className="bmi-goal">Daily goal: {goal.dailyMinutes} minutes</p>
+          <p className="bmi-goal">Daily goal: {profile.dailyMinutes ?? goal.dailyMinutes} minutes</p>
         </div>
 
         {/* Recommended workouts */}

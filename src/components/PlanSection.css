@@ -25,6 +25,12 @@
   margin-top: 24px;
 }
 
+@media (min-width: 640px) {
+  .plan-fields {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 .plan-goal-label {
   margin: 16px 0 6px;
 }

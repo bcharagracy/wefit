@@ -3,7 +3,7 @@ import PageHeader from "../components/PageHeader.jsx";
 import PlanSection from "../components/PlanSection.jsx";
 import LogForm from "../components/LogForm.jsx";
 import WeeklyChart from "../components/WeeklyChart.jsx";
-import useLocalStorage from "../hooks/useLocalStorage.js";
+import useMemoryState from "../hooks/useMemoryState.js";
 import { toDateKey, lastSevenDays, total, countStreak } from "../data/helpers.js";
 import { goals } from "../data/plan.js";
 import "./Tracker.css";
@@ -11,12 +11,12 @@ import "./Tracker.css";
 const DEFAULT_GOAL = 30; // minutes per day, used until the user creates a plan
 
 export default function Tracker() {
-  // Everything is saved in the browser (localStorage)
-  const [log, setLog] = useLocalStorage("wf-workouts", []);
-  const [profile, setProfile] = useLocalStorage("wf-profile", null);
+  // Kept in memory only: resets when the page is refreshed
+  const [log, setLog] = useMemoryState("wf-workouts", []);
+  const [profile, setProfile] = useMemoryState("wf-profile", null);
 
   const today = toDateKey();
-  const dailyGoal = profile ? goals[profile.goal].dailyMinutes : DEFAULT_GOAL;
+  const dailyGoal = profile ? (profile.dailyMinutes ?? goals[profile.goal].dailyMinutes) : DEFAULT_GOAL;
 
   const todayWorkouts = log.filter((w) => w.date === today);
   const minutesOn = (date) => total(log.filter((w) => w.date === date), "minutes");

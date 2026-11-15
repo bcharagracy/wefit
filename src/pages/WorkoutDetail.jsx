@@ -4,14 +4,14 @@ import { FiArrowLeft, FiClock, FiTrendingUp, FiZap, FiPackage, FiCheckCircle, Fi
 import workouts from "../data/workouts.js";
 import categoryStyles from "../data/categoryStyles.js";
 import WorkoutCard from "../components/WorkoutCard.jsx";
-import useLocalStorage from "../hooks/useLocalStorage.js";
+import useMemoryState from "../hooks/useMemoryState.js";
 import { toDateKey } from "../data/helpers.js";
 import "./WorkoutDetail.css";
 
 export default function WorkoutDetail() {
   const { id } = useParams(); // read the :id from the URL
   const workout = workouts.find((w) => w.id === id);
-  const [log, setLog] = useLocalStorage("wf-workouts", []);
+  const [log, setLog] = useMemoryState("wf-workouts", []);
   const [added, setAdded] = useState(false);
 
   // Wrong id in the URL

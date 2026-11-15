@@ -7,7 +7,7 @@ import "./About.css";
 const values = [
   { icon: FiHeart, title: "Health first", text: "Small daily habits lead to big long-term results." },
   { icon: FiUsers, title: "For everyone", text: "Beginner or athlete, the plan adapts to your level." },
-  { icon: FiShield, title: "Your data, your device", text: "Your logs are stored only in your own browser." },
+  { icon: FiShield, title: "Nothing is stored", text: "Your plan and logs are never saved. They reset when you refresh the page." },
 ];
 
 const stats = [

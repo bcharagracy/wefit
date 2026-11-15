@@ -31,7 +31,7 @@ healthy habits in three steps:
 - Progress: daily goal bar, streak, weekly total and a 7-day bar chart
 - Workout library with search and filters (Cardio, Strength, Yoga, HIIT)
 - Responsive design for desktop, tablet and mobile (hamburger menu on phones)
-- Data saved in the browser with `localStorage` (no backend in Phase 1)
+- Data kept in memory only and reset on page refresh (no backend or saving in Phase 1)
 
 ## Technologies
 
@@ -69,7 +69,7 @@ src/
 ├── components/   Reusable parts (Navbar, Footer, WorkoutCard, PlanSection, LogForm, WeeklyChart...)
 ├── pages/        One file per page, each with its own CSS file
 ├── data/         Workout data, plan logic (BMI + recommendations) and helper functions
-├── hooks/        useLocalStorage (useState that is saved in the browser)
+├── hooks/        useMemoryState (useState shared between pages, reset on refresh)
 ├── App.jsx       Layout and routes
 ├── main.jsx      Entry point
 └── index.css     Global styles: colors, buttons, cards, forms, grids

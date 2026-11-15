@@ -88,13 +88,13 @@ src/
 |---|---|
 | ![Features](screenshots/features.png) | ![Workouts](screenshots/workouts.png) |
 
-| My Tracker | Contact |
+| Workout details (dynamic page) | My Tracker |
 |---|---|
-| ![Tracker](screenshots/tracker.png) | ![Contact](screenshots/contact.png) |
+| ![Workout details](screenshots/workout-detail.png) | ![Tracker](screenshots/tracker.png) |
 
-| Mobile |
-|---|
-| <img src="screenshots/mobile-home.png" alt="Mobile" width="300"> |
+| Contact | Mobile |
+|---|---|
+| ![Contact](screenshots/contact.png) | <img src="screenshots/mobile-home.png" alt="Mobile" width="300"> |
 
 ## Team
 

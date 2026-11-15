@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { FiGithub, FiMail, FiInstagram } from "react-icons/fi";
 import Logo from "./Logo.jsx";
 import "./Footer.css";
@@ -13,16 +12,6 @@ export default function Footer() {
             Your personal fitness companion. Get a plan, log your workouts and track your
             progress.
           </p>
-        </div>
-
-        <div>
-          <h4>Quick links</h4>
-          <ul className="footer-links">
-            <li><Link to="/workouts">Workouts</Link></li>
-            <li><Link to="/tracker">My Tracker</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-          </ul>
         </div>
 
         <div>

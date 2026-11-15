@@ -7,7 +7,7 @@ const workouts = [
     category: "Cardio",
     level: "Beginner",
     duration: 30,
-    calories: 280,
+    met: 7.0, // intensity (MET) used to estimate calories
     equipment: "None",
     description:
       "An easy-paced run to wake up your body, improve heart health and build endurance.",
@@ -25,7 +25,7 @@ const workouts = [
     category: "Cardio",
     level: "Intermediate",
     duration: 20,
-    calories: 240,
+    met: 11.0,
     equipment: "Jump rope",
     description: "Short rounds of skipping that raise your heart rate and improve coordination.",
     steps: [
@@ -42,7 +42,7 @@ const workouts = [
     category: "Strength",
     level: "Intermediate",
     duration: 45,
-    calories: 320,
+    met: 5.0,
     equipment: "Dumbbells",
     description: "A balanced routine that works your legs, back, chest and core in one session.",
     steps: [
@@ -59,7 +59,7 @@ const workouts = [
     category: "Strength",
     level: "Beginner",
     duration: 25,
-    calories: 180,
+    met: 3.8,
     equipment: "None",
     description: "Build a strength foundation at home using only your own body weight.",
     steps: [
@@ -76,7 +76,7 @@ const workouts = [
     category: "Yoga",
     level: "Beginner",
     duration: 20,
-    calories: 90,
+    met: 2.5,
     equipment: "Yoga mat",
     description: "A gentle flow to improve flexibility, reduce stress and start the day calmly.",
     steps: [
@@ -93,7 +93,7 @@ const workouts = [
     category: "Yoga",
     level: "Beginner",
     duration: 15,
-    calories: 60,
+    met: 2.3,
     equipment: "Yoga mat",
     description: "Release tension from a long day and prepare your body for better sleep.",
     steps: [
@@ -110,7 +110,7 @@ const workouts = [
     category: "HIIT",
     level: "Advanced",
     duration: 20,
-    calories: 300,
+    met: 8.0,
     equipment: "None",
     description: "High-intensity intervals: 20 seconds all-out, 10 seconds rest, for maximum burn.",
     steps: [
@@ -127,7 +127,7 @@ const workouts = [
     category: "HIIT",
     level: "Intermediate",
     duration: 15,
-    calories: 150,
+    met: 5.0,
     equipment: "Yoga mat",
     description: "A quick, intense circuit that targets your abs and lower back.",
     steps: [
@@ -144,7 +144,7 @@ const workouts = [
     category: "Cardio",
     level: "Advanced",
     duration: 40,
-    calories: 420,
+    met: 8.5,
     equipment: "Bike or stationary bike",
     description: "Alternate between steady riding and fast sprints to boost stamina.",
     steps: [

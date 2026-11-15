@@ -29,3 +29,9 @@ export function countStreak(entries) {
   }
   return streak;
 }
+
+// Calories burned, using the MET formula:
+// calories = MET x weight (kg) x hours
+export function estimateCalories(met, weightKg, minutes) {
+  return Math.round(met * weightKg * (minutes / 60));
+}

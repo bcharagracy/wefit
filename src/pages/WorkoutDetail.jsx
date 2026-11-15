@@ -5,7 +5,7 @@ import workouts from "../data/workouts.js";
 import categoryStyles from "../data/categoryStyles.js";
 import WorkoutCard from "../components/WorkoutCard.jsx";
 import useMemoryState from "../hooks/useMemoryState.js";
-import { toDateKey } from "../data/helpers.js";
+import { toDateKey, estimateCalories } from "../data/helpers.js";
 import "./WorkoutDetail.css";
 
 export default function WorkoutDetail() {
@@ -18,6 +18,8 @@ export default function WorkoutDetail() {
   const added = addedId === id;
   // Minutes typed by the user for each workout (until they type, the usual time is shown)
   const [minutesById, setMinutesById] = useState({});
+  // The plan's weight is used for calories (70 kg if there is no plan yet)
+  const [profile] = useMemoryState("wf-profile", null);
 
   // Wrong id in the URL
   if (!workout) {
@@ -36,6 +38,8 @@ export default function WorkoutDetail() {
 
   const minutes = minutesById[id] ?? workout.duration;
   const validMinutes = Number(minutes) > 0 && Number(minutes) <= 300;
+  const weight = profile ? profile.weight : 70;
+  const calories = validMinutes ? estimateCalories(workout.met, weight, Number(minutes)) : 0;
 
   const addToLog = () => {
     setLog([...log, { id: Date.now(), date: toDateKey(), name: workout.title, minutes: Number(minutes) }]);
@@ -44,7 +48,7 @@ export default function WorkoutDetail() {
 
   const stats = [
     { icon: FiClock, label: "Duration", value: `${workout.duration} min` },
-    { icon: FiZap, label: "Calories", value: `~${workout.calories} kcal` },
+    { icon: FiZap, label: profile ? "Calories (your weight)" : "Calories (70 kg)", value: `~${calories} kcal` },
     { icon: FiTrendingUp, label: "Level", value: workout.level },
     { icon: FiPackage, label: "Equipment", value: workout.equipment },
   ];

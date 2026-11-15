@@ -1,4 +1,5 @@
-import { FiActivity, FiTrash2 } from "react-icons/fi";
+import { Link, useSearchParams } from "react-router-dom";
+import { FiActivity, FiTrash2, FiArrowLeft } from "react-icons/fi";
 import PageHeader from "../components/PageHeader.jsx";
 import PlanSection from "../components/PlanSection.jsx";
 import LogForm from "../components/LogForm.jsx";
@@ -10,7 +11,17 @@ import "./Tracker.css";
 
 const DEFAULT_GOAL = 30; // minutes per day, used until the user creates a plan
 
+// ?show=... (used by the Features page) displays only one card
+const VIEWS = {
+  plan: "Personal plan",
+  log: "Workout log",
+  progress: "Your progress",
+};
+
 export default function Tracker() {
+  const [searchParams] = useSearchParams();
+  const show = VIEWS[searchParams.get("show")] ? searchParams.get("show") : null;
+
   // Kept in memory only: resets when the page is refreshed
   const [log, setLog] = useMemoryState("wf-workouts", []);
   const [profile, setProfile] = useMemoryState("wf-profile", null);
@@ -48,22 +59,10 @@ export default function Tracker() {
     );
   };
 
-  return (
-    <>
-      <PageHeader
-        title="My Tracker"
-        subtitle={new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
-      />
-
-      <section className="container tracker">
-        {/* 1. Get your plan */}
-        <PlanSection profile={profile} setProfile={setProfile} />
-
-        <div className="tracker-row">
-          {/* 2. Log workouts */}
-          <LogForm onAdd={addWorkout} />
-
-          {/* 3. Track progress */}
+  // ----- Cards -----
+  const planCard = <PlanSection profile={profile} setProfile={setProfile} />;
+  const logCard = <LogForm onAdd={addWorkout} />;
+  const progressCard = (
           <div className="card">
             <div className="card-head">
               <h2>Your progress</h2>
@@ -88,9 +87,8 @@ export default function Tracker() {
 
             <WeeklyChart days={week} goal={dailyGoal} />
           </div>
-        </div>
-
-        {/* Today's workouts */}
+  );
+  const todayCard = (
         <div className="card">
           <h2 className="list-title">Today's workouts</h2>
           {todayWorkouts.length === 0 ? (
@@ -110,6 +108,43 @@ export default function Tracker() {
             </ul>
           )}
         </div>
+  );
+
+  const header = (
+    <PageHeader
+      title={show ? VIEWS[show] : "My Tracker"}
+      subtitle={new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
+    />
+  );
+
+  // ----- Single card view (from the Features page) -----
+  if (show) {
+    return (
+      <>
+        {header}
+        <section className="container tracker tracker-single">
+          {show === "plan" && planCard}
+          {show === "log" && <>{logCard}{todayCard}</>}
+          {show === "progress" && progressCard}
+          <Link to="/tracker" className="link-arrow">
+            <FiArrowLeft /> Open the full tracker
+          </Link>
+        </section>
+      </>
+    );
+  }
+
+  // ----- Full tracker -----
+  return (
+    <>
+      {header}
+      <section className="container tracker">
+        {planCard}
+        <div className="tracker-row">
+          {logCard}
+          {progressCard}
+        </div>
+        {todayCard}
       </section>
     </>
   );

@@ -6,6 +6,11 @@
   padding-bottom: 64px;
 }
 
+/* Only one card shown (from the Features page) */
+.tracker-single {
+  max-width: 760px;
+}
+
 .tracker-row {
   display: grid;
   gap: 24px;

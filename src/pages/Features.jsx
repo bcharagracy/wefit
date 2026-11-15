@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
-import { FiTarget, FiActivity, FiBarChart2, FiSearch, FiAward, FiSmartphone, FiArrowRight } from "react-icons/fi";
+import { FiTarget, FiActivity, FiBarChart2, FiSearch,FiArrowRight } from "react-icons/fi";
 import PageHeader from "../components/PageHeader.jsx";
 
 const features = [
-  { icon: FiTarget, title: "Personal plan", text: "Enter your height, weight and goal to get your BMI and workouts picked just for you.", link: "/tracker" },
-  { icon: FiActivity, title: "Workout log", text: "Save each workout with its duration, or add one from the library in a single click.", link: "/tracker" },
-  { icon: FiBarChart2, title: "Progress tracking", text: "See today's minutes against your goal and a chart of your last 7 days.", link: "/tracker" },
-  { icon: FiAward, title: "Streaks", text: "Work out on back-to-back days and watch your streak grow.", link: "/tracker" },
-  { icon: FiSearch, title: "Workout library", text: "Search and filter guided routines by category: Cardio, Strength, Yoga and HIIT.", link: "/workouts" },
-  { icon: FiSmartphone, title: "Works everywhere", text: "A responsive design that looks great on your phone, tablet and laptop.", link: "/" },
-];
+  { icon: FiTarget, title: "Personal plan", text: "Enter your height, weight and goal to get your BMI and workouts picked just for you.", link: "/tracker?show=plan" },
+  { icon: FiActivity, title: "Workout log", text: "Save each workout with its duration, or add one from the library in a single click.", link: "/tracker?show=log" },
+  { icon: FiBarChart2, title: "Progress & streaks", text: "See today's minutes against your goal, a chart of your last 7 days and your workout streak.", link: "/tracker?show=progress" },
+  { icon: FiSearch, title: "Workout library", text: "Search and filter guided routines by category: Cardio, Strength, Yoga and HIIT.", link: "/workouts" },];
 
 export default function Features() {
   return (
@@ -18,7 +15,7 @@ export default function Features() {
 
       <section className="section">
         <div className="container">
-          <div className="grid grid-3">
+          <div className="grid grid-2">
             {features.map(({ icon: Icon, title, text, link }) => (
               <div key={title} className="card card-hover feature-card">
                 <span className="icon-box"><Icon /></span>
